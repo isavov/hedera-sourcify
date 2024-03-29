@@ -10,8 +10,8 @@ COPY *.json ./
 COPY openapi.yaml ./openapi.yaml
 COPY scripts/hedera-reset-docker.sh ./
 
-RUN npm config set fetch-retry-mintimeout 20000
-RUN npm config set fetch-retry-maxtimeout 120000
+RUN npm config set fetch-retry-mintimeout 100000
+RUN npm config set fetch-retry-maxtimeout 600000
 RUN npm install && npx lerna bootstrap --ci && npx lerna run build
 
 CMD ["npm", "run", "server:start"]
